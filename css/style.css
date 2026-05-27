@@ -1,0 +1,331 @@
+/* =====================================================
+   style.css  —  Dark Noir Portfolio
+   ===================================================== */
+
+:root {
+  --accent:     #c8a96e;
+  --accent-dim: rgba(200,169,110,0.15);
+  --bg:         #080808;
+  --surface:    rgba(255,255,255,0.03);
+  --border:     rgba(255,255,255,0.06);
+  --text:       #e8e0d4;
+  --muted:      rgba(232,224,212,0.4);
+  --online:     #57f287;
+  --idle:       #fee75c;
+  --dnd:        #ed4245;
+  --offline:    #747f8d;
+  --radius:     14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Mono', monospace;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND ── */
+#bg-media {
+  position: fixed; inset: 0; z-index: 0;
+  overflow: hidden;
+}
+#bg-media video,
+#bg-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  filter: grayscale(60%) contrast(1.1);
+}
+.bg-overlay {
+  position: fixed; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,169,110,0.04) 0%, transparent 70%),
+    linear-gradient(to bottom, rgba(8,8,8,.5) 0%, rgba(8,8,8,.85) 60%, rgba(8,8,8,.97) 100%);
+}
+.bg-overlay::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ── LAYOUT ── */
+#app {
+  position: relative; z-index: 2;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 60px 20px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+/* ── PROFILE ── */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: fadeUp .8s ease both;
+}
+.avatar-wrap {
+  position: relative;
+  width: 108px; height: 108px;
+}
+.avatar-wrap img {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(200,169,110,.3);
+  box-shadow: 0 0 40px rgba(200,169,110,.12), 0 0 0 1px rgba(255,255,255,.04);
+}
+.avatar-status-dot {
+  position: absolute;
+  bottom: 5px; right: 5px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  background: var(--offline);
+  transition: background .4s ease;
+}
+.profile-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  text-align: center;
+}
+.profile-bio {
+  font-size: .78rem;
+  color: var(--muted);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ── DISCORD STATUS ── */
+#discord-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: all .4s ease;
+  backdrop-filter: blur(6px);
+}
+.status-icon {
+  font-size: .9rem;
+  line-height: 1;
+}
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--offline);
+  transition: background .4s ease;
+  flex-shrink: 0;
+}
+.activity-card {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 360px;
+  animation: fadeUp .4s ease both;
+}
+.activity-card.visible { display: flex; }
+.activity-art {
+  width: 46px; height: 46px;
+  border-radius: 8px;
+  background: rgba(200,169,110,.08);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.activity-art img { width: 100%; height: 100%; object-fit: cover; }
+.activity-info { flex: 1; min-width: 0; }
+.activity-type {
+  font-size: .65rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+.activity-name {
+  font-family: 'Syne', sans-serif;
+  font-size: .85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.activity-detail {
+  font-size: .68rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── MUSIC PLAYER ── */
+.music-player {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  backdrop-filter: blur(12px);
+  animation: fadeUp .8s .15s ease both;
+}
+.player-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.player-label {
+  font-size: .65rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-size: .65rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  align-self: flex-start;
+  padding-left: 2px;
+}
+
+/* ── PROJECTS ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  animation: fadeUp .8s .25s ease both;
+}
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .25s, background .25s, transform .2s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,169,110,.3), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.project-card:hover { border-color: rgba(200,169,110,.25); background: rgba(200,169,110,.05); transform: translateY(-2px); }
+.project-card:hover::before { opacity: 1; }
+.project-icon { font-size: 1.2rem; margin-bottom: 2px; }
+.project-name {
+  font-family: 'Syne', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+}
+.project-desc { font-size: .68rem; color: var(--muted); line-height: 1.5; }
+.project-tag {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: .6rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: .7;
+}
+
+/* ── SOCIALS ── */
+.socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp .8s .35s ease both;
+}
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: .7rem;
+  letter-spacing: .05em;
+  transition: all .22s ease;
+  background: var(--surface);
+  backdrop-filter: blur(6px);
+}
+.social-link:hover { color: var(--text); border-color: rgba(200,169,110,.3); background: var(--accent-dim); }
+
+/* ── FOOTER ── */
+.footer {
+  font-size: .6rem;
+  letter-spacing: .08em;
+  color: rgba(255,255,255,.12);
+  text-transform: uppercase;
+  text-align: center;
+  animation: fadeUp .8s .45s ease both;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 500px) {
+  #app { padding: 40px 16px 80px; gap: 28px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .profile-name { font-size: 1.6rem; }
+  .music-player { max-width: 100%; }
+}
