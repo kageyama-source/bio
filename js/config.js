@@ -58,9 +58,9 @@ const CONFIG = {
   /* ── SOSYAL MEDYA ─────────────────────────────────── */
   socials: [
     { icon: "github",  label: "GitHub",  url: "https://github.com/kageyama" },
-    { icon: "discord", label: "Discord", url: "https://discord.gg/9z3n5xChw" },
+    { icon: "discord", label: "Discord", url: "https://discord.gg/QwxMuNjRff" },
     { icon: "tebex",   label: "Tebex",   url: "https://MAGAZA.tebex.io" },
-    { icon: "mail",    label: "Mail",    url: "mailto:MAİL@ornek.com" },
+    { icon: "mail",    label: "Mail",    url: "mailto:erneiletisim@gmail.com" },
   ],
 
 };
