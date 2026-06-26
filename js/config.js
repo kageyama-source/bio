@@ -34,10 +34,10 @@ const CONFIG = {
   projects: [
     {
       icon:  "⬡",
-      name:  "Kirk4 MC",
-      desc:  "Towny*Smp sunucusu.",
+      name:  "Vicestar",
+      desc:  "Vicestar Development",
       tag:   "Discord",
-      url:   "https://discord.gg/6bVMZfrvy2",
+      url:   "https://discord.gg/vicestar,
     },
     {
       icon:  "◈",
