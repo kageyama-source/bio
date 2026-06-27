@@ -37,7 +37,7 @@ const CONFIG = {
       name:  "Vicestar",
       desc:  "Vicestar Development",
       tag:   "Discord",
-      url:   "https://discord.gg/vicestar,
+      url:   "https://discord.gg/vicestar",
     },
     {
       icon:  "◈",
