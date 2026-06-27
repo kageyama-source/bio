@@ -8,7 +8,7 @@ const CONFIG = {
   profile: {
     name:   "! e r N E",
     bio:    "Developer · Designer · Modeller",
-    avatar: "assets/img/avatar.png",
+    avatar: "https://i.pinimg.com/736x/2d/b2/5e/2db25e840db3cd127ef1b985f7bda804.jpg",
   },
 
   /* ── DISCORD ──────────────────────────────────────── */
